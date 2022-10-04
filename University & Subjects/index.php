@@ -14,7 +14,8 @@ $subject2 = $university->addSubject('113', 'Web III');
 $subject2->addStudent('Bob', '456');
 $subject2->addStudent('Brad', '567');
 
-echo $university->getNumberOfStudents(); // This must print 5, because we totally added 5 students in different subjects
+echo "Number of students: ".$university->getNumberOfStudents()."<br>";
+// This must print 5, because we totally added 5 students in different subjects
 
 /**
  * This method must print all subjects and for each subject all students registered on the subject int the following format

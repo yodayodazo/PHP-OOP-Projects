@@ -13,6 +13,23 @@ class Student
     public string $name;
     public string $studentNumber;
 
-    // TODO Generate getters and setters for both arguments
-    // TODO Generate constructor with both arguments.
+    public function __construct($name, $studentNumber){
+        $this->name = $name;
+        $this->studentNumber = $studentNumber;
+    }
+
+    public function getName(){
+        return $this->name;
+    }
+    public function setName($name){
+        $this->name = $name;
+    }
+
+    public function getStudentNumber(){
+        return $this->studentNumber;
+    }
+    public function setStudentNumber($studentNumber){
+        $this->studentNumber = $studentNumber;
+    }
+    
 }

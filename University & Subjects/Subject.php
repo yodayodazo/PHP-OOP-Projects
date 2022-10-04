@@ -17,8 +17,26 @@ class Subject
      */
     public $students = [] ;
 
-    // TODO Generate getters and setters
-    // TODO Generate constructor for all attributes. $students argument of the constructor can be empty
+
+    public function __construct($code, $name, $students = []){
+        $this->code = $code;
+        $this->name = $name;
+        $this->students = $students;
+    }
+
+    public function getCode(){
+        return $this->code;
+    }
+    public function setCode($code){
+        $this->code = $code;
+    }
+
+    public function getName(){
+        return $this->name;
+    }
+    public function setName($name){
+        $this->name = $name;
+    }
 
     /**
      * Method accepts student name and number, creates instance of the Student class, adds inside $students array
@@ -28,8 +46,16 @@ class Subject
      * @param string $studentNumber
      * @return \Student
      */
+    
     public function addStudent(string $name, string $studentNumber): Student
     {
-        // TODO Implement method according to method annotation
+        $newStudent = new Student($name, $studentNumber);
+        if (isset($this->students)){ // student array not null
+            array_push($this->students, $newStudent);
+        }
+        else { // student array is null
+            $this->student = [$newStudent];
+        }
+        return $newStudent;
     }
 }
