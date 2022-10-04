@@ -2,6 +2,7 @@
 
 require_once "Book.php";
 require_once "Library.php";
+require_once "Author.php";
 
 $library = new Library();
 $author = $library->addAuthor('Jack London');
@@ -15,8 +16,7 @@ $author2->addBook('Luck', 12);
 
 $book = $library->search('Martin Eden'); // This must return instance of the book
 $author = $book->getAuthor(); // This must return instance of the Author class
-echo $author->getName(); // This must print "Jack London"
-
+echo "The author name is: ".$author->getName()."<br>"; // This must print "Jack London"
 $library->print();
 /*
 Jack London

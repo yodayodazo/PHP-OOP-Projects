@@ -15,7 +15,12 @@ abstract class AbstractLibrary
      */
     private $authors = [];
 
-     // TODO Generate getters and setters of properties
+    public function getAuthor(){
+        return $this->authors;
+    }
+    public function setAuthor($authors){
+        $this->authors = $authors;
+    }
 
     /**
      * Method accepts the name of the author, creates instance of the Author class,
