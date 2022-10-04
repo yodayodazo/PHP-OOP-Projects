@@ -8,8 +8,13 @@ class Cart
      */
     private array $items = [];
 
-    // TODO Generate getters and setters of properties
+    public function getItems(){
+        return $this->items;
+    }
 
+    public function setItems(array $items){
+        $this->items = $items;
+    }
     /**
      * Add Product $product into cart. If product already exists inside cart
      * it must update quantity.
@@ -23,7 +28,26 @@ class Cart
      */
     public function addProduct(Product $product, int $quantity): CartItem
     {
-        //TODO Implement method
+        // $cartItem is dummy variable.
+        if (count($this->items) == 0){
+            $cartItem = new CartItem($product, $quantity);
+            self::setItems([$cartItem]);
+        }
+        else{
+            // find product in cart
+            foreach ($this->items as $item){
+                if ($item->getProduct()->getId() === $product->getId()){
+                    $cartItem = $item->increaseQuantity();
+                }
+            }
+            if (isset($cartItem) == false){
+                $cartItem = new CartItem($product, $quantity);
+                self::setItems(array_merge(self::items,[$cartItem]));
+            }
+        }
+        
+        return $cartItem;
+        
     }
 
     /**
@@ -33,7 +57,20 @@ class Cart
      */
     public function removeProduct(Product $product)
     {
-        //TODO Implement method
+        // $cartItem is dummy variable.
+        if (count($this->items) == 0){
+            echo "Shopping cart is empty.";
+        }
+        else{
+            // find product in cart
+            foreach ($this->items as $item){
+                if ($item->getProduct()->getId() === $product->getId()){
+                    $cartItem = $item->decreaseQuantity();
+                }
+            }
+        }
+        
+        return $cartItem;
     }
 
     /**
@@ -43,7 +80,11 @@ class Cart
      */
     public function getTotalQuantity(): int
     {
-        //TODO Implement method
+        $count = 0;
+        foreach ($this->items as $item){
+            $count += $item->getQuantity();
+        }
+        return $count;
     }
 
     /**
@@ -53,6 +94,10 @@ class Cart
      */
     public function getTotalSum(): float
     {
-        //TODO Implement method
+        $sum = 0;
+        foreach ($this->items as $item){
+            $sum += $item->getProduct()->getPrice() * $item->getQuantity()  ;
+        }
+        return $sum;
     }
 }

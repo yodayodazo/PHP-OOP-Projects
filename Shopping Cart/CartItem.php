@@ -6,18 +6,53 @@ class CartItem
     private Product $product;
     private int $quantity;
 
-    // TODO Generate constructor with all properties of the class
-    // TODO Generate getters and setters of properties
-
-    public function increaseQuantity()
+    public function __construct(Product $product, int $quantity)
     {
-        //TODO $quantity must be increased by one.
-        // Bonus: $quantity must not become more than whatever is Product::$availableQuantity
+        $this->product = $product;
+        $this->quantity = $quantity;
     }
 
-    public function decreaseQuantity()
+    public function getProduct()
     {
-        //TODO $quantity must be increased by one.
+        return $this->product;
+    }
+    public function setProduct($product)
+    {
+        $this->product = $product;
+    }
+
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+    }
+    
+    public function increaseQuantity($amount = 1)
+    {
+
+        // $quantity += 1;
+
+        // Bonus: $quantity must not become more than whatever is Product::$availableQuantity
+        if ($this->quantity + $amount > $this->product->getAvailableQuantity()) {
+            echo "We only have ".$this->quantity." available, cannot increase quantity. <br>";
+        }
+        else {
+            $this->quantity += $amount;
+        }
+    }
+
+    public function decreaseQuantity($amount = 1)
+    {
+
         // Bonus: Quantity must not become less than 1
+        if ($this->quantity < $amount) {
+            echo "Quantity must not be less than 0, cannot decrease quantity. <br>";
+        }
+        else {
+            $this->quantity -= $amount;
+        }
     }
 }
